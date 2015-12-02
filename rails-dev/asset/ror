@@ -1,0 +1,31 @@
+#!/bin/bash
+
+USEREXEC='rails'
+SITEDIR='/site'
+
+case "$1" in
+  restart)
+    echo -n "Restarting"
+    sudo -u $USEREXEC -H touch $SITEDIR/tmp/restart.txt
+    echo -n "Done"
+    ;;
+  asset)
+    echo -n "Clean up assets and cache"
+    cd $SITEDIR
+    sudo -u $USEREXEC -H bundle exec rake assets:clean assets:precompile RAILS_ENV=production
+    ;;
+  migration)
+    echo -n "Run database migrations"
+    cd $SITEDIR
+    sudo -u $USEREXEC -H bundle exec rake db:migrate RAILS_ENV=production
+    ;;
+  install)
+    echo -n "Installation"
+    cd $SITEDIR
+    bundle install --without development test
+    ;;
+  *)
+    echo "Usage: {restart|asset|migration|install}" >&2
+    exit 1
+    ;;
+esac
