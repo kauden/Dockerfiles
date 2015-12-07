@@ -1,4 +1,4 @@
-FROM kauden/nginx
+FROM docker.kauden.fr/kauden/nginx
 
 MAINTAINER Thierry Corbin <thierry.corbin@kauden.fr>
 

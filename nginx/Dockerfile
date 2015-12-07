@@ -1,10 +1,10 @@
-FROM ubuntu:14.10
+FROM ubuntu:15.10
 
 MAINTAINER Thierry Corbin <thierry.corbin@kauden.fr>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN echo "deb http://archive.ubuntu.com/ubuntu utopic main universe" > /etc/apt/sources.list && \
+RUN echo "deb http://archive.ubuntu.com/ubuntu wily main universe" > /etc/apt/sources.list && \
     apt-get update && \
     apt-get -y install nginx \
     curl \
